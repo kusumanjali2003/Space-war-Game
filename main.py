@@ -18,6 +18,7 @@ playerX = 370
 playerY = 480
 playerX_change = 0
 
+#enemy update
 enemyImg = []
 enemyX = []
 enemyY = []
