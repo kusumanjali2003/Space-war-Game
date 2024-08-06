@@ -2,23 +2,28 @@ import math
 import random
 import pygame
 from pygame import mixer
- #initalize
+
+# Initialize Pygame
 pygame.init()
 
+# Create the screen
 screen = pygame.display.set_mode((800, 600))
-#background set up
+
+# Background setup
 background = pygame.image.load('background.png')
 
+# Title and Icon
 pygame.display.set_caption("Space War Game")
 icon = pygame.image.load('ufo.png')
 pygame.display.set_icon(icon)
 
+# Player
 playerImg = pygame.image.load('player.png')
 playerX = 370
 playerY = 480
 playerX_change = 0
 
-#enemy update
+# Enemy
 enemyImg = []
 enemyX = []
 enemyY = []
@@ -33,19 +38,21 @@ for i in range(num_of_enemies):
     enemyX_change.append(2)  # Reduced speed
     enemyY_change.append(20)  # Reduced speed
 
+# Bullet
 bulletImg = pygame.image.load('bullet.png')
 bulletX = 0
 bulletY = 480
 bulletX_change = 0
 bulletY_change = 5  # Reduced speed
-bullet_state = "ready"
+bullet_state = "ready"  # "ready" - You can't see the bullet on the screen; "fire" - The bullet is currently moving
 
+# Score
 score_value = 0
 font = pygame.font.Font('freesansbold.ttf', 32)
-#tests
 textX = 10
-testY = 10
+textY = 10
 
+# Game Over
 over_font = pygame.font.Font('freesansbold.ttf', 64)
 
 def show_score(x, y):
@@ -74,14 +81,19 @@ def isCollision(enemyX, enemyY, bulletX, bulletY):
     else:
         return False
 
+# Game Loop
 running = True
 while running:
+    # RGB - Red, Green, Blue
     screen.fill((0, 0, 0))
+    # Background Image
     screen.blit(background, (0, 0))
+    
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
 
+        # If keystroke is pressed check whether its right or left
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
                 playerX_change = -2  # Reduced speed
@@ -104,7 +116,9 @@ while running:
     elif playerX >= 736:
         playerX = 736
 
+    # Enemy Movement
     for i in range(num_of_enemies):
+        # Game Over
         if enemyY[i] > 440:
             for j in range(num_of_enemies):
                 enemyY[j] = 2000
@@ -131,6 +145,7 @@ while running:
 
         enemy(enemyX[i], enemyY[i], i)
 
+    # Bullet Movement
     if bulletY <= 0:
         bulletY = 480
         bullet_state = "ready"
@@ -140,5 +155,5 @@ while running:
         bulletY -= bulletY_change
 
     player(playerX, playerY)
-    show_score(textX, testY)
+    show_score(textX, textY)
     pygame.display.update()
