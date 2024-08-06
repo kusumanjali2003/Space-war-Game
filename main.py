@@ -2,11 +2,11 @@ import math
 import random
 import pygame
 from pygame import mixer
- 
+ #initalize
 pygame.init()
 
 screen = pygame.display.set_mode((800, 600))
-
+#background set up
 background = pygame.image.load('background.png')
 
 pygame.display.set_caption("Space War Game")
@@ -18,6 +18,7 @@ playerX = 370
 playerY = 480
 playerX_change = 0
 
+#enemy update
 enemyImg = []
 enemyX = []
 enemyY = []
@@ -41,7 +42,7 @@ bullet_state = "ready"
 
 score_value = 0
 font = pygame.font.Font('freesansbold.ttf', 32)
-
+#tests
 textX = 10
 testY = 10
 
