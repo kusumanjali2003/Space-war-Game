@@ -17,11 +17,13 @@ pygame.display.set_caption("Space War Game")
 icon = pygame.image.load('ufo.png')
 pygame.display.set_icon(icon)
 
+
 # Player
 playerImg = pygame.image.load('player.png')
 playerX = 370
 playerY = 480
 playerX_change = 0
+
 
 # Enemy
 enemyImg = []
@@ -31,12 +33,14 @@ enemyX_change = []
 enemyY_change = []
 num_of_enemies = 6
 
+
 for i in range(num_of_enemies):
     enemyImg.append(pygame.image.load('enemy.png'))
     enemyX.append(random.randint(0, 736))
     enemyY.append(random.randint(50, 150))
     enemyX_change.append(2)  # Reduced speed
     enemyY_change.append(20)  # Reduced speed
+
 
 # Bullet
 bulletImg = pygame.image.load('bullet.png')
@@ -51,6 +55,7 @@ score_value = 0
 font = pygame.font.Font('freesansbold.ttf', 32)
 textX = 10
 textY = 10
+
 
 # Game Over
 over_font = pygame.font.Font('freesansbold.ttf', 64)
@@ -80,6 +85,7 @@ def isCollision(enemyX, enemyY, bulletX, bulletY):
         return True
     else:
         return False
+
 
 # Game Loop
 running = True
